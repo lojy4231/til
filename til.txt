@@ -1,8 +1,30 @@
-1. 앞으로 git 프로젝트로 만들고 싶은 것
-2. 1주차 주요 개념 키워드 적어보기
-git 과 github의 차이
-sourcetree
-commit
-원격 repo
-로컬 repo
-push, pull
+5월 10일
+jasonify 사용시 오류가 잘 발생하므로
+-@app.route("/review", methods=["GET"])
+def commenst_get():
+    all_reviw = list(db.fin_Reviews.find({}, {'_id': False}))
+    return jsonify({'review':all_review}) 가 아닌
+    return jsonify(all_review)  로 사용
+
+
+
+function commenst_get() {
+
+            $.ajax({
+                type: 'GET',
+                url: '/review',
+                data : {},
+                success: function (response) {
+                    let row = response                             <<<<<<< 여기도 let row = response['all_review'] 가 아님
+                    for (let i = 0; i < row.length; i++) {
+                        let location = row[i]['location']
+                        let sopt = row[i]['spot_name']
+                        let content = row[i]['content']
+                        let file = row[i]['file']
+
+                        console.log(file, location, sopt, content)
+                    }
+
+                }
+            });
+        }
