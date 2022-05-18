@@ -102,3 +102,16 @@ console.log(solution(1,18))
 마지막으로 내일 발표 할 CS 스터디 Chapt 3 HDD 와 SSD의 차이 자료 준비
 
 끝.
+
+
+
+
+1. node.js 과제 제출
+- 호이스팅, 스코프, TDZ 등 javascript에 좀 더 알게 되었다.
+
+https://www.notion.so/Node-js-976d3ca7d7f24de2b35dc8ac5ce27ee3
+
+
+2. 항해톡
+- Rest API, HTTP 두가지 발표하는 걸 들었고
+    Rest API와 HTTP에 관해 조금더 알게 되었다.
