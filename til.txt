@@ -115,3 +115,40 @@ https://www.notion.so/Node-js-976d3ca7d7f24de2b35dc8ac5ce27ee3
 2. 항해톡
 - Rest API, HTTP 두가지 발표하는 걸 들었고
     Rest API와 HTTP에 관해 조금더 알게 되었다.
+
+
+
+
+
+.sort((a,b) => b-a)
+
+숫자 오름차순 정렬시 그냥 .sort()를 쓰면 
+arr = [2, 10, 1, 30]
+
+num = arr.sort(); // [1, 10, 2, 30]
+이 된다
+
+그래서 
+arr = [2, 10, 1, 30]
+
+num = arr.sort((a,b) => b-a); // [1, 2, 10, 30]
+
+이렇게 써줘야 한다.
+
+.join(x); - join에서 x 값은 합쳐질때 중간중간 x가 들어감
+예시)
+function solution(n){
+	let result=""
+    let num = n.toString().split("").reverse(); //[ '3', '5', '2', '8', '1', '7' ]
+    console.log(num);
+    let x = 0;
+    for(let i =0; i <num.length; i++){
+        x += parseInt(num[i]);
+        console.log(x);
+    }
+    console.log(num);
+	return result = num.join('+')+`=${x}`;   // 3+5+2+8+1+7=26
+}
+console.log(solution(718253))
+
+오늘 코딩테스트는 망....
