@@ -195,3 +195,87 @@ Query String은 URL의 뒤에 ?부터 시작되어 parameter=value 로 key 값�
 새로운 주차 시작
 node.js에 본격적으로 시작하는 주 이번 챕터는 3주간 이루어 진다.
 한 단계 더 성장하는 계기가 되기를...
+
+
+Fake API란 
+    주로 API가 아직 만들어지지 않았거나 실제 서버를 실행하기 어려운 경우에 실제 API가 아닌 가짜 API를 만들어서 프론드엔드나 서버의 개발 또는 테스트를 원활하게 진행할 수 있게 도와 준다.
+
+    JSON Placeholder
+    // Fake API
+    etch('https://jsonplaceholder.typicode.com/todos/1')
+     .then(response => response.json())
+     .then(json => console.log(json))
+
+
+    // Output
+    {
+    	"userId": 1,
+    	"id": 1,
+    	"title": "delectus aut autem",
+    	"completed": false
+    }
+
+    위 코드에 fetch라는 키워드 안에 주소로 API Request를 요청했을때 결과 값을 첫번째 then 키워드에서 response를 json 형태로 가져와 마지막으로 json 데이터를 console.log로 리턴해 준다.
+
+    Fake Store API는 JSON Placeholder 사용 법이 거의 동일 하지만 쇼핑 웹사이트와 웹서비스에 필요한 Fake API를 제공함.
+    // Fake API
+    fetch('https://fakestoreapi.com/products/1')
+                .then((res) => res.json())
+                .then((json) => console.log(json))
+    
+    // Output
+    {
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "description": "Your perfect pack for everyday use and walks in the   forest. Stash your laptop (up to 15 inches) in the padded sleeve, your    everyday",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 120
+      }
+    }
+
+
+API 구상하기
+1. 기능 분석을 먼저 해야 어떤 API가 필요할지 구상 할 수 있음.
+2. 각 기능에 대한 API 구상
+    어떤 HTTP Method로 작성 할지, 주소는 어떻게 할지 정하기
+    예시)
+    기본적인 요청/응답 인터페이스
+    - Request
+        - Method: `GET`
+        - URL: `/articles`
+
+    - Response
+        - HTTP Status Code: `200`
+        - Payload: { articleId: number, content: string, authorId: number }[]
+
+    Body를 가진 (POST, PUT, DELETE, ...등의 Method)를 가진 인터페이스
+    - Request
+        - Method: `POST`
+        - URL: `/articles`
+        - Body: { content: string, authorId: number }
+
+    - Response
+        - HTTP Status Code: `201`
+        - Payload: { articleId: number }
+    
+    URL에 Params가 있는 API
+    - Request
+        - Method: `PUT`
+        - URL: `/articles/:articleId`
+        - Body: { content: string }
+    
+    - Response
+        - HTTP Status Code: `200`
+        - Payload: { articleId: number, content: string, authorId: number }
+
+CORS란
+    교차 출처 리소스 공유 (Cross-origin resouce sharing)의 약자로, 현재 브라우저로 접속중인 페이지에서 자바스크립트를 이용해 다른 도메인 또는 포트를 가진 주소로 요청을 하는 경우, 해당 리소스에 접근을 허용 했는지 확인 해 보안을 높이는 동작.
+
+    발생 방지 방법
+        서버에 Access-Control-Allow_Origin 응답 헤더를 추가하면 됨.
+        node.js에서는 cors 모듈 설치로 문제 해결
+
