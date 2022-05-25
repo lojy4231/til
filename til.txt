@@ -284,3 +284,26 @@ CORS란
 개인과제 시작
 Nodj.js 기초반 강의를 보고 spa_mall 한 번 제작하고 API서버에 대한 이해도가 좀 올라 간듯 했다가 막상 개인과제를 위해 블로그 제작을 하려니 막막한다..
 자료를 다시 찾아보기도 하고 구글링도 해보기도 하고 열심히 찾고는 있지만 이제 막 시작 단계... 목요일까지 마무리를 목표로 열심히 하자!
+
+
+개인과제
+api 서버 제작은 완료
+
+오늘 배운것 - post로도 삭제가 가능하다.
+
+router.post("/posts/:postNum/delete", async (req, res) => {
+    const { postNum } = req.params;
+    const { password } = req.body;
+
+    const existPost = await Post.find({password });
+    if(!existPost.length){
+        return res.status(400).json({ success: false, errorMessage: " 비밀번호가 다릅니다." });    
+    }
+        const deletePost = await Post.deleteOne({ postNum: Number(postNum) });
+    
+    res.json({ delete: deletePost });
+});
+
+post는 단순이 생성만 가능 하다고 생각했는데 역으로 입력을 해서 삭제도 가능하다.
+그럼 put에서도 가능 하지 않을까? 내일 시도 해봐야겠다.
+그래도 서버 구현을 했다는게 뿌듯하다.
